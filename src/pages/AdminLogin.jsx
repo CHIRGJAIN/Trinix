@@ -21,16 +21,16 @@ const AdminLogin = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded shadow mt-12">
-      <h2 className="text-2xl font-semibold mb-4">Admin Login</h2>
+    <div className="max-w-md mx-auto p-6 bg-white rounded shadow mt-12 text-black">
+      <h2 className="text-2xl font-semibold mb-4 text-black">Admin Login</h2>
       {error && <div className="text-red-600 mb-2">{error}</div>}
       <form onSubmit={handleSubmit}>
-        <label className="block mb-2">
-          <span className="text-sm">Email</span>
+        <label className="block mb-2 text-black">
+          <span className="text-sm text-black">Email</span>
           <input className="mt-1 block w-full border rounded px-3 py-2 text-black placeholder-gray-500" value={email} onChange={e => setEmail(e.target.value)} required />
         </label>
-        <label className="block mb-4">
-          <span className="text-sm">Password</span>
+        <label className="block mb-4 text-black">
+          <span className="text-sm text-black">Password</span>
           <input type="password" className="mt-1 block w-full border rounded px-3 py-2 text-black placeholder-gray-500" value={password} onChange={e => setPassword(e.target.value)} required />
         </label>
         <div className="flex items-center justify-between">
