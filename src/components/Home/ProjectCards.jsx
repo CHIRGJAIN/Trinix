@@ -136,7 +136,7 @@ const ProjectCards = () => {
                     const opacity = isCenter ? 1 : 0.9
                     // fixed card size: wider and shorter per request
                     const cardWidth = '70rem'
-                    const cardHeight = '40rem'
+                    const cardHeight = '30rem'
 
                     return (
                       <motion.div
@@ -149,7 +149,7 @@ const ProjectCards = () => {
                             zIndex: z,
                             opacity,
                             width: cardWidth,
-                            maxWidth: '95vw'
+                            maxWidth: '950vw'
                           }}
                           className={`inline-block mx-8 p-4`}
                       >
