@@ -1,6 +1,7 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Calendar, Shield, Heart } from 'lucide-react'
+import { ArrowRight, Calendar, Shield, Heart, Activity } from 'lucide-react'
 
 const ProjectCards = () => {
   const projects = [
@@ -34,6 +35,38 @@ const ProjectCards = () => {
       path: '/medgo',
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     }
+    ,
+    {
+      name: 'PropGo',
+      description: 'Property discovery and management platform for rentals and listings.',
+      icon: ArrowRight,
+      color: 'from-indigo-500 to-violet-500',
+      bgColor: 'from-indigo-500/10 to-violet-500/10',
+      features: ['Property Listings', 'Search & Filters', 'Owner Dashboard'],
+      path: '/propgo',
+      image: 'https://images.unsplash.com/photo-1505691723518-36a0f4a2e6a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      name: 'Vedic AI',
+      description: 'AI-driven insights blending classical knowledge with modern techniques.',
+      icon: Activity,
+      color: 'from-yellow-500 to-orange-500',
+      bgColor: 'from-yellow-500/10 to-orange-500/10',
+      features: ['Generative Models', 'Knowledge Graphs', 'Enterprise Integrations'],
+      path: '/vedic-ai',
+      image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      name: 'WebStitch',
+      description: 'A lightweight website builder and theme stitching tool for rapid site assembly.',
+      icon: ArrowRight,
+      color: 'from-blue-500 to-cyan-500',
+      bgColor: 'from-blue-500/10 to-cyan-500/10',
+      features: ['Theme Templates', 'Drag & Drop', 'Export & Deploy'],
+      path: 'https://webstitch.in/',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      external: true
+    }
   ]
 
   return (
@@ -66,63 +99,123 @@ const ProjectCards = () => {
               whileHover={{ y: -10 }}
               className="group"
             >
-              <Link to={project.path}>
-                <div className={`relative h-full glass rounded-2xl overflow-hidden bg-gradient-to-br ${project.bgColor} border border-white/10 hover:border-white/20 transition-all duration-300`}>
-                  {/* Background Image */}
-                  <div className="absolute inset-0">
-                    <img
-                      src={project.image}
-                      alt={project.name}
-                      className="w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                    />
-                  </div>
+              {project.external ? (
+                <a href={project.path} target="_blank" rel="noreferrer">
+                  <div className={`relative h-full glass rounded-2xl overflow-hidden bg-gradient-to-br ${project.bgColor} border border-white/10 hover:border-white/20 transition-all duration-300`}>
+                    {/* Background Image */}
+                    <div className="absolute inset-0">
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                      />
+                    </div>
 
-                  {/* Content */}
-                  <div className="relative p-8 h-full flex flex-col">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-6">
-                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                        <project.icon className="w-8 h-8 text-white" />
+                    {/* Content */}
+                    <div className="relative p-8 h-full flex flex-col">
+                      {/* Header */}
+                      <div className="flex items-start justify-between mb-6">
+                        <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center`}>
+                          {React.createElement(project.icon, { className: 'w-8 h-8 text-white' })}
+                        </div>
+                      </div>
+
+                      {/* Title & Description */}
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-white group-hover:to-white/80 transition-all duration-300">
+                          {project.name}
+                        </h3>
+                        <p className="text-white/70 leading-relaxed mb-6">
+                          {project.description}
+                        </p>
+
+                        {/* Features */}
+                        <div className="space-y-2 mb-6">
+                          {project.features.map((feature, featureIndex) => (
+                            <div key={featureIndex} className="flex items-center space-x-2">
+                              <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${project.color}`} />
+                              <span className="text-white/80 text-sm">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* CTA */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/60 text-sm">Learn More</span>
+                        <motion.div
+                          className={`w-8 h-8 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center`}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <ArrowRight className="w-4 h-4 text-white" />
+                        </motion.div>
                       </div>
                     </div>
 
-                    {/* Title & Description */}
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-white group-hover:to-white/80 transition-all duration-300">
-                        {project.name}
-                      </h3>
-                      <p className="text-white/70 leading-relaxed mb-6">
-                        {project.description}
-                      </p>
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </a>
+              ) : (
+                <Link to={project.path}>
+                  <div className={`relative h-full glass rounded-2xl overflow-hidden bg-gradient-to-br ${project.bgColor} border border-white/10 hover:border-white/20 transition-all duration-300`}>
+                    {/* Background Image */}
+                    <div className="absolute inset-0">
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                      />
+                    </div>
 
-                      {/* Features */}
-                      <div className="space-y-2 mb-6">
-                        {project.features.map((feature, featureIndex) => (
-                          <div key={featureIndex} className="flex items-center space-x-2">
-                            <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${project.color}`} />
-                            <span className="text-white/80 text-sm">{feature}</span>
-                          </div>
-                        ))}
+                    {/* Content */}
+                    <div className="relative p-8 h-full flex flex-col">
+                      {/* Header */}
+                      <div className="flex items-start justify-between mb-6">
+                        <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center`}>
+                          {React.createElement(project.icon, { className: 'w-8 h-8 text-white' })}
+                        </div>
+                      </div>
+
+                      {/* Title & Description */}
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-white group-hover:to-white/80 transition-all duration-300">
+                          {project.name}
+                        </h3>
+                        <p className="text-white/70 leading-relaxed mb-6">
+                          {project.description}
+                        </p>
+
+                        {/* Features */}
+                        <div className="space-y-2 mb-6">
+                          {project.features.map((feature, featureIndex) => (
+                            <div key={featureIndex} className="flex items-center space-x-2">
+                              <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${project.color}`} />
+                              <span className="text-white/80 text-sm">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* CTA */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/60 text-sm">Learn More</span>
+                        <motion.div
+                          className={`w-8 h-8 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center`}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <ArrowRight className="w-4 h-4 text-white" />
+                        </motion.div>
                       </div>
                     </div>
 
-                    {/* CTA */}
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60 text-sm">Learn More</span>
-                      <motion.div
-                        className={`w-8 h-8 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center`}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                      >
-                        <ArrowRight className="w-4 h-4 text-white" />
-                      </motion.div>
-                    </div>
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </Link>
+                </Link>
+              )}
             </motion.div>
           ))}
         </div>
