@@ -21,6 +21,14 @@ const Projects = () => {
       features: ['Generative Models', 'Knowledge Graphs', 'Enterprise Integrations']
     },
     {
+      name: 'WebStitch',
+      description: 'A lightweight website builder and theme stitching tool for rapid site assembly',
+      path: '/webstitch',
+      color: 'from-blue-500 to-cyan-500',
+      icon: ArrowRight,
+      features: ['Theme Templates', 'Drag & Drop', 'Export & Deploy']
+    },
+    {
       name: 'Eventify',
       description: 'Revolutionary event management and venue booking platform',
       path: '/eventify',
