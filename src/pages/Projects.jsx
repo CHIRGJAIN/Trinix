@@ -97,13 +97,25 @@ const Projects = () => {
                 ))}
               </div>
               
-              <Link
-                to={project.path}
-                className="button-primary w-full inline-flex items-center justify-center space-x-2"
-              >
-                <span>Learn More</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              {project.name === 'WebStitch' ? (
+                <a
+                  href="https://webstitch.in/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="button-primary w-full inline-flex items-center justify-center space-x-2"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              ) : (
+                <Link
+                  to={project.path}
+                  className="button-primary w-full inline-flex items-center justify-center space-x-2"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              )}
             </motion.div>
           ))}
         </div>
