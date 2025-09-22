@@ -13,6 +13,14 @@ const Projects = () => {
       features: ['Property Listings', 'Search & Filters', 'Owner Dashboard']
     },
     {
+      name: 'Vedic AI',
+      description: 'AI-driven insights powered by classical knowledge and modern ML techniques',
+      path: '/vedic-ai',
+      color: 'from-yellow-500 to-orange-500',
+      icon: Activity,
+      features: ['Generative Models', 'Knowledge Graphs', 'Enterprise Integrations']
+    },
+    {
       name: 'Eventify',
       description: 'Revolutionary event management and venue booking platform',
       path: '/eventify',
