@@ -35,7 +35,7 @@ const ResearchSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl lg:text-5xl font-display font-bold text-white mb-4">
-            Research
+            Research and idea
           </h2>
           <p className="text-white/80 max-w-2xl mx-auto">
             A snapshot of our latest research initiatives across AI, healthcare, and operations.

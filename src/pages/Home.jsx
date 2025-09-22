@@ -4,7 +4,7 @@ import CompanyIntro from '../components/Home/CompanyIntro'
 import ProjectCards from '../components/Home/ProjectCards'
 import ResearchSection from '../components/Home/ResearchSection'
 import ResearchBanner from '../components/Home/ResearchBanner'
-import Collaborators from '../components/Home/Collaborators'
+// import Collaborators from '../components/Home/Collaborators'
 import { useStore } from '../store/store'
 
 const Home = () => {
@@ -38,7 +38,9 @@ const Home = () => {
       <ResearchBanner />
 
   {/* Our Collaborators */}
+  {/** Collaborators section commented out as requested
   <Collaborators />
+  */}
     </div>
   )
 }
