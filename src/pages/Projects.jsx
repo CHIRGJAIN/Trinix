@@ -5,6 +5,14 @@ import { ArrowRight, Calendar, Heart, Activity } from 'lucide-react'
 const Projects = () => {
   const projects = [
     {
+      name: 'PropGo',
+      description: 'Property discovery and management platform for rentals and listings',
+      path: '/propgo',
+      color: 'from-indigo-500 to-violet-500',
+      icon: ArrowRight,
+      features: ['Property Listings', 'Search & Filters', 'Owner Dashboard']
+    },
+    {
       name: 'Eventify',
       description: 'Revolutionary event management and venue booking platform',
       path: '/eventify',

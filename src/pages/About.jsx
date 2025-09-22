@@ -52,36 +52,7 @@ const About = () => {
     }
   ]
 
-  const team = [
-    {
-      name: 'Rajesh Kumar',
-      role: 'CEO & Founder',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      bio: 'Visionary leader with 15+ years in tech innovation and business strategy.',
-      linkedin: '#'
-    },
-    {
-      name: 'Priya Sharma',
-      role: 'CTO',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      bio: 'Technology expert driving our platform architecture and development.',
-      linkedin: '#'
-    },
-    {
-      name: 'Amit Patel',
-      role: 'Head of Product',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      bio: 'Product strategist focused on user experience and market growth.',
-      linkedin: '#'
-    },
-    {
-      name: 'Sarah Johnson',
-      role: 'Head of Operations',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      bio: 'Operations specialist ensuring seamless service delivery worldwide.',
-      linkedin: '#'
-    }
-  ]
+  // team section removed per request
 
   const milestones = [
     {
@@ -247,52 +218,7 @@ const About = () => {
           </div>
         </motion.div>
 
-        {/* Team */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
-              Meet Our <span className="gradient-text">Team</span>
-            </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              The passionate individuals behind our innovative solutions and continued success.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {team.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-                className="glass rounded-2xl p-6 text-center"
-              >
-                <div className="relative mb-4">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-24 h-24 mx-auto rounded-full object-cover"
-                  />
-                  <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-green-500 rounded-full border-2 border-white"></div>
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-1">{member.name}</h3>
-                <div className="text-primary-400 font-medium mb-3">{member.role}</div>
-                <p className="text-white/70 text-sm leading-relaxed mb-4">{member.bio}</p>
-                <a
-                  href={member.linkedin}
-                  className="inline-flex items-center space-x-1 text-white/60 hover:text-white transition-colors"
-                >
-                  <span className="text-sm">View Profile</span>
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Team section removed */}
 
         {/* Coverage */}
         <motion.div
