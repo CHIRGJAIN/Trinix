@@ -32,6 +32,29 @@ const HeroSection = () => {
       path: '/medgo',
       stats: { doctors: '850+', patients: '25,000+', rating: '4.8' }
     }
+    ,
+    {
+      name: 'PropGo',
+      description: 'Property discovery and management platform',
+      color: 'from-indigo-500 to-violet-500',
+      image: 'https://images.unsplash.com/photo-1505691723518-36a0f4a2e6a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      path: '/propgo'
+    },
+    {
+      name: 'Vedic AI',
+      description: 'AI-driven insights blending classical knowledge',
+      color: 'from-yellow-500 to-orange-500',
+      image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      path: '/vedic-ai'
+    },
+    {
+      name: 'WebStitch',
+      description: 'Website builder and theme stitching tool',
+      color: 'from-blue-500 to-cyan-500',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      path: 'https://webstitch.in/',
+      external: true
+    }
   ]
 
   useEffect(() => {
@@ -161,13 +184,25 @@ const HeroSection = () => {
                       <p className="text-white/90 mb-4">
                         {projects[activeProject].description}
                       </p>
-                      <Link
-                        to={projects[activeProject].path}
-                        className="inline-flex items-center space-x-2 text-white hover:text-white/80 transition-colors"
-                      >
-                        <span>Learn More</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
+                      {projects[activeProject].external ? (
+                        <a
+                          href={projects[activeProject].path}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center space-x-2 text-white hover:text-white/80 transition-colors"
+                        >
+                          <span>Learn More</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
+                      ) : (
+                        <Link
+                          to={projects[activeProject].path}
+                          className="inline-flex items-center space-x-2 text-white hover:text-white/80 transition-colors"
+                        >
+                          <span>Learn More</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </motion.div>
