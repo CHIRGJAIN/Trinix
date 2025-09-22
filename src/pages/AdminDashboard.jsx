@@ -60,10 +60,10 @@ const AdminDashboard = () => {
       <form onSubmit={handleAdd} className="mb-6 bg-white p-4 rounded shadow">
         <h2 className="font-medium mb-2">Add Research Paper</h2>
         <div className="grid grid-cols-1 gap-3">
-          <input placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} className="border rounded px-2 py-1" required />
-          <input placeholder="Authors (comma separated)" value={authors} onChange={e => setAuthors(e.target.value)} className="border rounded px-2 py-1" />
-          <textarea placeholder="Abstract" value={abstractText} onChange={e => setAbstractText(e.target.value)} className="border rounded px-2 py-1" rows={4} />
-          <input placeholder="Link to PDF or URL" value={link} onChange={e => setLink(e.target.value)} className="border rounded px-2 py-1" />
+          <input placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} className="border rounded px-2 py-1 text-black placeholder-gray-500" required />
+          <input placeholder="Authors (comma separated)" value={authors} onChange={e => setAuthors(e.target.value)} className="border rounded px-2 py-1 text-black placeholder-gray-500" />
+          <textarea placeholder="Abstract" value={abstractText} onChange={e => setAbstractText(e.target.value)} className="border rounded px-2 py-1 text-black placeholder-gray-500" rows={4} />
+          <input placeholder="Link to PDF or URL" value={link} onChange={e => setLink(e.target.value)} className="border rounded px-2 py-1 text-black placeholder-gray-500" />
           <div>
             <button className="bg-green-600 text-white px-3 py-1 rounded" type="submit">Add Paper</button>
           </div>

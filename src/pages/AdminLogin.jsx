@@ -27,11 +27,11 @@ const AdminLogin = () => {
       <form onSubmit={handleSubmit}>
         <label className="block mb-2">
           <span className="text-sm">Email</span>
-          <input className="mt-1 block w-full border rounded px-3 py-2" value={email} onChange={e => setEmail(e.target.value)} required />
+          <input className="mt-1 block w-full border rounded px-3 py-2 text-black placeholder-gray-500" value={email} onChange={e => setEmail(e.target.value)} required />
         </label>
         <label className="block mb-4">
           <span className="text-sm">Password</span>
-          <input type="password" className="mt-1 block w-full border rounded px-3 py-2" value={password} onChange={e => setPassword(e.target.value)} required />
+          <input type="password" className="mt-1 block w-full border rounded px-3 py-2 text-black placeholder-gray-500" value={password} onChange={e => setPassword(e.target.value)} required />
         </label>
         <div className="flex items-center justify-between">
           <button className="bg-blue-600 text-white px-4 py-2 rounded" type="submit">Login</button>
