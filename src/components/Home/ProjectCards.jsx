@@ -113,70 +113,95 @@ const ProjectCards = () => {
               <ArrowRight className="w-5 h-5 transform rotate-180 text-white" />
             </button>
 
-            <div className="w-full max-w-5xl overflow-hidden">
-              <div className="relative h-96">
-                {projects.map((project, i) => {
-                  const pos = i - index
-                  let translate = `translateX(${(pos) * 60}%) scale(${i === index ? 1 : 0.8})`
-                  let z = i === index ? 20 : 10
-                  if (pos < -1) {
-                    // wrap left
-                    translate = `translateX(${(pos + length) * 60}%) scale(0.8)`
-                  }
-                  if (pos > 1) {
-                    // wrap right
-                    translate = `translateX(${(pos - length) * 60}%) scale(0.8)`
+            <div className="w-full max-w-5xl overflow-visible">
+              <div className="relative h-[44rem] flex items-center justify-center">
+                {/* compute left, center, right indices */}
+                {(() => {
+                  const center = index
+                  const left = (index - 1 + length) % length
+                  const right = (index + 1) % length
+
+                  const leftProject = projects[left]
+                  const centerProject = projects[center]
+                  const rightProject = projects[right]
+
+                  const Card = ({ project, pos }) => {
+                    // pos: 'left' | 'center' | 'right'
+                    const isCenter = pos === 'center'
+                    const translateX = pos === 'left' ? -60 : pos === 'right' ? 60 : 0
+                    const rotateY = pos === 'left' ? 10 : pos === 'right' ? -10 : 0
+                    // keep side cards same visual length as center; use slight scale tweak for depth
+                    const scale = isCenter ? 1.03 : 0.995
+                    const z = isCenter ? 50 : 8
+                    const opacity = isCenter ? 1 : 0.9
+                    // fixed card size: wider and shorter per request
+                    const cardWidth = '70rem'
+                    const cardHeight = '40rem'
+
+                    return (
+                      <motion.div
+                        key={project.name + pos}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                        style={{
+                            transform: `translateX(${translateX}%) scale(${scale}) rotateY(${rotateY}deg)`,
+                            zIndex: z,
+                            opacity,
+                            width: cardWidth,
+                            maxWidth: '95vw'
+                          }}
+                          className={`inline-block mx-8 p-4`}
+                      >
+                          <div style={{ height: cardHeight }} className={`relative glass rounded-2xl overflow-hidden bg-gradient-to-br ${project.bgColor} border border-white/10 hover:border-white/20 transition-all duration-300`}>
+                          <div className="absolute inset-0">
+                            <img src={project.image} alt={project.name} className="w-full h-full object-cover opacity-20" />
+                          </div>
+                          <div className="relative p-8 h-full flex flex-col">
+                            <div className="flex items-start justify-between mb-6">
+                              <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center`}>
+                                {React.createElement(project.icon, { className: 'w-8 h-8 text-white' })}
+                              </div>
+                            </div>
+
+                            <div className="flex-1">
+                              <h3 className="text-2xl font-bold text-white mb-3">{project.name}</h3>
+                              <p className="text-white/70 leading-relaxed mb-6">{project.description}</p>
+                              <div className="space-y-2 mb-6">
+                                {project.features.map((feature, fi) => (
+                                  <div key={fi} className="flex items-center space-x-2">
+                                    <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${project.color}`} />
+                                    <span className="text-white/80 text-sm">{feature}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                              <span className="text-white/60 text-sm">Learn More</span>
+                              <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center`}>
+                                <ArrowRight className="w-4 h-4 text-white" />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                        </div>
+                      </motion.div>
+                    )
                   }
 
                   return (
-                    <motion.div
-                      key={project.name}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.6 }}
-                      style={{
-                        transform: translate,
-                        zIndex: z
-                      }}
-                      className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 lg:w-1/3 p-4`}
-                    >
-                      <div className={`relative h-96 glass rounded-2xl overflow-hidden bg-gradient-to-br ${project.bgColor} border border-white/10 hover:border-white/20 transition-all duration-300`}>
-                        <div className="absolute inset-0">
-                          <img src={project.image} alt={project.name} className="w-full h-full object-cover opacity-20" />
-                        </div>
-                        <div className="relative p-8 h-full flex flex-col">
-                          <div className="flex items-start justify-between mb-6">
-                            <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                              {React.createElement(project.icon, { className: 'w-8 h-8 text-white' })}
-                            </div>
-                          </div>
-
-                          <div className="flex-1">
-                            <h3 className="text-2xl font-bold text-white mb-3">{project.name}</h3>
-                            <p className="text-white/70 leading-relaxed mb-6">{project.description}</p>
-                            <div className="space-y-2 mb-6">
-                              {project.features.map((feature, fi) => (
-                                <div key={fi} className="flex items-center space-x-2">
-                                  <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${project.color}`} />
-                                  <span className="text-white/80 text-sm">{feature}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <span className="text-white/60 text-sm">Learn More</span>
-                            <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center`}>
-                              <ArrowRight className="w-4 h-4 text-white" />
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                      </div>
-                    </motion.div>
+                    <>
+                      {/* left behind */}
+                      <Card project={leftProject} pos="left" />
+                      {/* center on top */}
+                      <Card project={centerProject} pos="center" />
+                      {/* right behind */}
+                      <Card project={rightProject} pos="right" />
+                    </>
                   )
-                })}
+                })()}
               </div>
             </div>
 
