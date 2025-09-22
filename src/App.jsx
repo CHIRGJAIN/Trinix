@@ -16,6 +16,8 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
+import PropGo from './pages/PropGo'
+import VedicAI from './pages/VedicAI'
 import Careers from './pages/Careers'
 import NotFound from './pages/NotFound'
 
@@ -38,6 +40,8 @@ function App() {
             <Route path="/research" element={<ResearchPortal />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/propgo" element={<PropGo />} />
+            <Route path="/vedic-ai" element={<VedicAI />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/careers" element={<Careers />} />
