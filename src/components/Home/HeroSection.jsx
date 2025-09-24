@@ -52,8 +52,8 @@ const HeroSection = () => {
       description: 'Website builder and theme stitching tool',
       color: 'from-blue-500 to-cyan-500',
       image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      path: 'https://webstitch.in/',
-      external: true
+      path: '/webstitch',
+      external: false
     }
   ]
 
@@ -67,11 +67,25 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-sky-50 to-white" />
+      
+      {/* Hero Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(/hero-section.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.3
+        }}
+      />
+      
+      {/* Overlay to ensure content visibility */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-sky-50/80 to-white/90" />
       
       {/* Animated Background Shapes */}
       <motion.div
-        className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full blur-3xl"
+        className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-sky-500/20 to-neon-500/20 rounded-full blur-3xl sky-glow"
         animate={{
           scale: [1, 1.2, 1],
           rotate: [0, 180, 360],
@@ -83,7 +97,7 @@ const HeroSection = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-accent-500/20 to-primary-500/20 rounded-full blur-3xl"
+        className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-sky-500/20 to-neon-500/20 rounded-full blur-3xl neon-glow"
         animate={{
           scale: [1.2, 1, 1.2],
           rotate: [360, 180, 0],
@@ -109,18 +123,18 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="text-5xl lg:text-7xl font-display font-bold text-white leading-tight"
+                className="text-5xl lg:text-7xl font-display font-bold text-gray-900 leading-tight"
               >
                 Innovating
                 <span className="block gradient-text">Tomorrow</span>
-                <span className="block text-white">Today</span>
+                <span className="block text-gray-900">Today</span>
               </motion.h1>
               
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-xl text-white/80 leading-relaxed"
+                className="text-xl text-gray-700 leading-relaxed"
               >
                 Discover Trinix's cutting-edge solutions for emergency services, 
                 healthcare, and event management. We're building the future, one innovation at a time.
@@ -181,7 +195,7 @@ const HeroSection = () => {
                       <h3 className="text-2xl font-bold text-white mb-2">
                         {projects[activeProject].name}
                       </h3>
-                      <p className="text-white/90 mb-4">
+                      <p className="text-gray-200 mb-4">
                         {projects[activeProject].description}
                       </p>
                       {projects[activeProject].external ? (
@@ -189,7 +203,7 @@ const HeroSection = () => {
                           href={projects[activeProject].path}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center space-x-2 text-white hover:text-white/80 transition-colors"
+                          className="inline-flex items-center space-x-2 text-white hover:text-gray-300 transition-colors"
                         >
                           <span>Learn More</span>
                           <ArrowRight className="w-4 h-4" />
@@ -197,7 +211,7 @@ const HeroSection = () => {
                       ) : (
                         <Link
                           to={projects[activeProject].path}
-                          className="inline-flex items-center space-x-2 text-white hover:text-white/80 transition-colors"
+                          className="inline-flex items-center space-x-2 text-white hover:text-gray-300 transition-colors"
                         >
                           <span>Learn More</span>
                           <ArrowRight className="w-4 h-4" />
@@ -218,7 +232,7 @@ const HeroSection = () => {
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === activeProject
                       ? `bg-gradient-to-r ${project.color} scale-125`
-                      : 'bg-white/30 hover:bg-white/50'
+                      : 'bg-gray-400 hover:bg-gray-500'
                   }`}
                 />
               ))}

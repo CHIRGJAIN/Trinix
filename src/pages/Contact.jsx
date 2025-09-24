@@ -8,7 +8,6 @@ import {
   Send, 
   Check, 
   AlertCircle,
-  MessageCircle,
   User,
   Building,
   FileText
@@ -56,32 +55,6 @@ const Contact = () => {
     }
   ]
 
-  const supportCategories = [
-    {
-      id: 'general',
-      title: 'General Inquiry',
-      description: 'Questions about our services and platform',
-      icon: MessageCircle
-    },
-    {
-      id: 'technical',
-      title: 'Technical Support',
-      description: 'Help with platform features and issues',
-      icon: Building
-    },
-    {
-      id: 'billing',
-      title: 'Billing & Payments',
-      description: 'Questions about pricing and payments',
-      icon: FileText
-    },
-    {
-      id: 'partnership',
-      title: 'Partnership',
-      description: 'Business collaboration opportunities',
-      icon: User
-    }
-  ]
 
   const validateField = (name, value) => {
     switch (name) {
@@ -160,10 +133,10 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+          <h1 className="text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6">
             Get in <span className="gradient-text">Touch</span>
           </h1>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Have questions or need support? We're here to help. Reach out to us through any of the channels below.
           </p>
         </motion.div>
@@ -177,7 +150,7 @@ const Contact = () => {
             className="space-y-8"
           >
             <div className="glass rounded-2xl p-8">
-              <h2 className="text-2xl font-semibold text-white mb-6">Send us a Message</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a Message</h2>
               
               {isSubmitted ? (
                 <motion.div
@@ -188,8 +161,8 @@ const Contact = () => {
                   <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-500/20 flex items-center justify-center">
                     <Check className="w-8 h-8 text-green-400" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-4">Message Sent Successfully!</h3>
-                  <p className="text-white/80 mb-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Message Sent Successfully!</h3>
+                  <p className="text-gray-600 mb-6">
                     Thank you for reaching out. We'll get back to you within 24 hours.
                   </p>
                   <button
@@ -203,9 +176,9 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-white/80 text-sm mb-2">Full Name *</label>
+                      <label className="block text-gray-700 text-sm mb-2">Full Name *</label>
                       <div className="relative">
-                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40 w-5 h-5" />
+                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                         <input
                           type="text"
                           value={formData.name}
@@ -225,9 +198,9 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label className="block text-white/80 text-sm mb-2">Email Address *</label>
+                      <label className="block text-gray-700 text-sm mb-2">Email Address *</label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40 w-5 h-5" />
+                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                         <input
                           type="email"
                           value={formData.email}
@@ -248,9 +221,9 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-white/80 text-sm mb-2">Company (Optional)</label>
+                    <label className="block text-gray-700 text-sm mb-2">Company (Optional)</label>
                     <div className="relative">
-                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40 w-5 h-5" />
+                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <input
                         type="text"
                         value={formData.company}
@@ -262,9 +235,9 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-white/80 text-sm mb-2">Subject *</label>
+                    <label className="block text-gray-700 text-sm mb-2">Subject *</label>
                     <div className="relative">
-                      <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40 w-5 h-5" />
+                      <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <input
                         type="text"
                         value={formData.subject}
@@ -284,7 +257,7 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-white/80 text-sm mb-2">Message *</label>
+                    <label className="block text-gray-700 text-sm mb-2">Message *</label>
                     <textarea
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
@@ -323,25 +296,6 @@ const Contact = () => {
               )}
             </div>
 
-            {/* Support Categories */}
-            <div className="glass rounded-2xl p-8">
-              <h3 className="text-xl font-semibold text-white mb-6">What can we help you with?</h3>
-              <div className="grid gap-4">
-                {supportCategories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => openModal('support')}
-                    className="flex items-center space-x-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-left"
-                  >
-                    <category.icon className="w-6 h-6 text-primary-400" />
-                    <div>
-                      <div className="text-white font-semibold">{category.title}</div>
-                      <div className="text-white/60 text-sm">{category.description}</div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
           </motion.div>
 
           {/* Contact Information */}
@@ -364,80 +318,21 @@ const Contact = () => {
                     <info.icon className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-2">{info.title}</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{info.title}</h3>
                     <div className="space-y-1 mb-3">
                       {info.details.map((detail, detailIndex) => (
-                        <div key={detailIndex} className="text-white/80">
+                        <div key={detailIndex} className="text-gray-600">
                           {detail}
                         </div>
                       ))}
                     </div>
-                    <p className="text-white/60 text-sm">{info.description}</p>
+                    <p className="text-gray-500 text-sm">{info.description}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
 
-            {/* Quick Actions */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="glass rounded-2xl p-6"
-            >
-              <h3 className="text-xl font-semibold text-white mb-6">Quick Actions</h3>
-              <div className="space-y-4">
-                <button
-                  onClick={() => openModal('support')}
-                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-white/10 rounded-lg text-white hover:bg-white/20 transition-colors"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  <span>Start Live Chat</span>
-                </button>
-                <a
-                  href="mailto:hello@trinix.com"
-                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-white/10 rounded-lg text-white hover:bg-white/20 transition-colors"
-                >
-                  <Mail className="w-5 h-5" />
-                  <span>Send Email</span>
-                </a>
-                <a
-                  href="tel:+919876543210"
-                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-white/10 rounded-lg text-white hover:bg-white/20 transition-colors"
-                >
-                  <Phone className="w-5 h-5" />
-                  <span>Call Now</span>
-                </a>
-              </div>
-            </motion.div>
 
-            {/* Office Location */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="glass rounded-2xl p-6"
-            >
-              <h3 className="text-xl font-semibold text-white mb-4">Visit Our Office</h3>
-              <div className="space-y-3 text-white/80">
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-primary-400 mt-0.5" />
-                  <div>
-                    <div className="font-semibold text-white">Trinix Pvt. Ltd.</div>
-                    <div>123, Marine Drive</div>
-                    <div>Colaba, Mumbai 400001</div>
-                    <div>Maharashtra, India</div>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Clock className="w-5 h-5 text-primary-400" />
-                  <div>
-                    <div>Monday - Friday: 9:00 AM - 6:00 PM</div>
-                    <div>Saturday: 10:00 AM - 4:00 PM</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
 
@@ -449,21 +344,21 @@ const Contact = () => {
           className="mt-16 text-center"
         >
           <div className="glass rounded-2xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-semibold text-white mb-4">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
               We Promise to Respond Quickly
             </h3>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary-400 mb-2">24 Hours</div>
-                <div className="text-white/80">Email Response Time</div>
+                <div className="text-3xl font-bold text-gray-600 mb-2">24 Hours</div>
+                <div className="text-gray-600">Email Response Time</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary-400 mb-2">2 Hours</div>
-                <div className="text-white/80">Live Chat Response</div>
+                <div className="text-3xl font-bold text-gray-600 mb-2">2 Hours</div>
+                <div className="text-gray-600">Live Chat Response</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary-400 mb-2">Immediate</div>
-                <div className="text-white/80">Phone Support</div>
+                <div className="text-3xl font-bold text-gray-600 mb-2">Immediate</div>
+                <div className="text-gray-600">Phone Support</div>
               </div>
             </div>
           </div>

@@ -11,9 +11,7 @@ import {
   Calendar,
   FileText,
   Github,
-  Filter,
   Search,
-  ChevronDown,
   Eye,
   Clock,
   Tag
@@ -24,7 +22,6 @@ const ResearchPortal = () => {
   const { openModal } = useStore()
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
-  const [showFilters, setShowFilters] = useState(false)
 
   const categories = ['All', 'Machine Learning', 'Healthcare Tech', 'Operations Research', 'Open Source', 'Publications']
 
@@ -162,13 +159,13 @@ const ResearchPortal = () => {
 
   const getCategoryColor = (category) => {
     const colors = {
-      'Machine Learning': 'from-purple-500 to-pink-500',
-      'Healthcare Tech': 'from-green-500 to-blue-500',
-      'Operations Research': 'from-orange-500 to-red-500',
-      'Open Source': 'from-blue-500 to-cyan-500',
-      'Publications': 'from-indigo-500 to-purple-500'
+      'Machine Learning': 'from-electric-500 to-neon-500',
+      'Healthcare Tech': 'from-electric-400 to-electric-600',
+      'Operations Research': 'from-neon-500 to-electric-600',
+      'Open Source': 'from-electric-500 to-accent-500',
+      'Publications': 'from-electric-600 to-neon-400'
     }
-    return colors[category] || 'from-gray-500 to-gray-600'
+    return colors[category] || 'from-electric-500 to-electric-600'
   }
 
   const getTypeIcon = (type) => {
@@ -181,7 +178,7 @@ const ResearchPortal = () => {
   }
 
   return (
-    <div className="min-h-screen pt-20 bg-gradient-to-b from-black via-gray-900 to-black">
+    <div className="min-h-screen pt-20 bg-gradient-to-b from-white via-gray-50 to-white">
       <div className="container-custom section-padding">
         {/* Header Section */}
         <motion.div
@@ -189,13 +186,13 @@ const ResearchPortal = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-electric-500 to-neon-500 flex items-center justify-center electric-glow">
             <BookOpen className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+          <h1 className="text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6">
             Research <span className="gradient-text">Portal</span>
           </h1>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Explore our cutting-edge research projects, open-source tools, and academic publications. 
             Discover innovative solutions that are shaping the future of technology.
           </p>
@@ -208,57 +205,36 @@ const ResearchPortal = () => {
           transition={{ delay: 0.2 }}
           className="mb-12"
         >
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+          <div className="flex flex-col gap-6">
             {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60 w-5 h-5" />
+            <div className="relative w-full max-w-2xl mx-auto">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search research projects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full pl-12 pr-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-500 transition-colors"
               />
             </div>
 
-            {/* Filter Toggle */}
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center space-x-2 px-6 py-3 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 transition-colors"
-            >
-              <Filter className="w-5 h-5" />
-              <span>Filters</span>
-              <ChevronDown className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
-            </button>
+            {/* Category Filters - Always Visible */}
+            <div className="flex flex-wrap gap-3 justify-center">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    selectedCategory === category
+                      ? 'bg-gradient-to-r from-gray-600 to-gray-800 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
-
-          {/* Category Filters */}
-          <AnimatePresence>
-            {showFilters && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="mt-6"
-              >
-                <div className="flex flex-wrap gap-3">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      onClick={() => setSelectedCategory(category)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                        selectedCategory === category
-                          ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                          : 'bg-white/10 text-white/80 hover:bg-white/20'
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </motion.div>
 
         {/* Results Count */}
@@ -268,7 +244,7 @@ const ResearchPortal = () => {
           transition={{ delay: 0.3 }}
           className="mb-8"
         >
-          <p className="text-white/60">
+          <p className="text-gray-600">
             Showing {filteredItems.length} of {researchItems.length} research items
           </p>
         </motion.div>
@@ -291,7 +267,7 @@ const ResearchPortal = () => {
                 whileHover={{ y: -5 }}
                 className="group cursor-pointer"
               >
-                <div className="glass rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
+                <div className="glass rounded-2xl overflow-hidden border border-gray-200/50 hover:border-gray-300/50 transition-all duration-300 h-full">
                   {/* Card Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img
@@ -322,7 +298,7 @@ const ResearchPortal = () => {
                        <div className="w-10 h-10 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
                          {(() => {
                            const IconComponent = getTypeIcon(item.type)
-                           return <IconComponent className="w-5 h-5 text-white" />
+                           return <IconComponent className="w-5 h-5 text-gray-600" />
                          })()}
                        </div>
                      </div>
@@ -331,7 +307,7 @@ const ResearchPortal = () => {
                   {/* Card Content */}
                   <div className="p-6">
                     {/* Meta Information */}
-                    <div className="flex items-center justify-between text-xs text-white/60 mb-3">
+                    <div className="flex items-center justify-between text-xs text-gray-600 mb-3">
                       <div className="flex items-center space-x-2">
                         <Clock className="w-3 h-3" />
                         <span>{item.readTime}</span>
@@ -343,17 +319,17 @@ const ResearchPortal = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-gray-600 group-hover:to-gray-800 transition-all duration-300">
                       {item.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-white/70 text-sm leading-relaxed mb-4 line-clamp-3">
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                       {item.description}
                     </p>
 
                     {/* Author and Date */}
-                    <div className="flex items-center justify-between text-xs text-white/60 mb-4">
+                    <div className="flex items-center justify-between text-xs text-gray-600 mb-4">
                       <div className="flex items-center space-x-1">
                         <Users className="w-3 h-3" />
                         <span>{item.author}</span>
@@ -363,7 +339,7 @@ const ResearchPortal = () => {
 
                     {/* Additional Info for Open Source */}
                     {item.stars && (
-                      <div className="flex items-center space-x-4 text-xs text-white/60 mb-4">
+                      <div className="flex items-center space-x-4 text-xs text-gray-600 mb-4">
                         <div className="flex items-center space-x-1">
                           <Star className="w-3 h-3" />
                           <span>{item.stars}</span>
@@ -377,7 +353,7 @@ const ResearchPortal = () => {
 
                     {/* Journal Info for Publications */}
                     {item.journal && (
-                      <div className="flex items-center space-x-1 text-xs text-white/60 mb-4">
+                      <div className="flex items-center space-x-1 text-xs text-gray-600 mb-4">
                         <Tag className="w-3 h-3" />
                         <span>{item.journal}</span>
                       </div>
@@ -385,9 +361,9 @@ const ResearchPortal = () => {
 
                     {/* Read More Button */}
                     <div className="flex items-center justify-between">
-                      <span className="text-purple-400 text-sm font-medium">Read More</span>
+                      <span className="text-gray-600 text-sm font-medium">Read More</span>
                       <motion.div
-                        className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"
+                        className="w-8 h-8 rounded-full bg-gradient-to-r from-gray-600 to-gray-800 flex items-center justify-center"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                       >
@@ -423,11 +399,11 @@ const ResearchPortal = () => {
           transition={{ delay: 0.7 }}
           className="text-center"
         >
-          <div className="glass rounded-3xl p-12 border border-white/10">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
+          <div className="glass rounded-3xl p-12 border border-gray-200/50">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-6">
               Contribute to Research
             </h2>
-            <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
               Have a research idea or want to collaborate? We're always looking for 
               talented researchers and innovative projects to advance technology.
             </p>

@@ -5,7 +5,6 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Eventify from './pages/Eventify'
-import SOS from './pages/SOS'
 import MedGo from './pages/MedGo'
 import Contact from './pages/Contact'
 import VenueDetails from './pages/VenueDetails'
@@ -18,12 +17,13 @@ import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
 import PropGo from './pages/PropGo'
 import VedicAI from './pages/VedicAI'
+import WebStitch from './pages/WebStitch'
 import Careers from './pages/Careers'
 import NotFound from './pages/NotFound'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-white">
       <Layout>
         <AnimatePresence mode="wait">
           <Routes>
@@ -31,7 +31,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/eventify" element={<Eventify />} />
-            <Route path="/sos" element={<SOS />} />
             <Route path="/medgo" element={<MedGo />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/venue/:id" element={<VenueDetails />} />
@@ -42,6 +41,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/propgo" element={<PropGo />} />
             <Route path="/vedic-ai" element={<VedicAI />} />
+            <Route path="/webstitch" element={<WebStitch />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/careers" element={<Careers />} />

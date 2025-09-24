@@ -65,7 +65,7 @@ const AdminDashboard = () => {
           <textarea placeholder="Abstract" value={abstractText} onChange={e => setAbstractText(e.target.value)} className="border rounded px-2 py-1 text-black placeholder-gray-500" rows={4} />
           <input placeholder="Link to PDF or URL" value={link} onChange={e => setLink(e.target.value)} className="border rounded px-2 py-1 text-black placeholder-gray-500" />
           <div>
-            <button className="bg-green-600 text-white px-3 py-1 rounded" type="submit">Add Paper</button>
+            <button className="bg-sky-600 text-white px-3 py-1 rounded" type="submit">Add Paper</button>
           </div>
         </div>
       </form>

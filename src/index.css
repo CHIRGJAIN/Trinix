@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-slate-900 text-white;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
+body {
+  @apply bg-white text-sky-800;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
   
   html {
     scroll-behavior: smooth;
@@ -22,12 +22,24 @@
     @apply bg-black/10 backdrop-blur-md border border-white/10;
   }
   
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
-  }
+.gradient-text {
+  @apply bg-gradient-to-r from-sky-500 to-neon-500 bg-clip-text text-transparent;
+}
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-primary-500 via-secondary-500 to-accent-500;
+    @apply bg-gradient-to-br from-sky-500 via-neon-500 to-sky-600;
+  }
+  
+  .sky-glow {
+    @apply shadow-[0_0_20px_rgba(14,165,233,0.3)] shadow-sky-500/50;
+  }
+  
+  .neon-glow {
+    @apply shadow-[0_0_30px_rgba(0,191,255,0.4)] shadow-neon-500/60;
+  }
+  
+  .sky-border {
+    @apply border border-sky-500/50 shadow-[0_0_15px_rgba(14,165,233,0.2)];
   }
   
   .card-hover {
@@ -35,15 +47,15 @@
   }
   
   .button-primary {
-    @apply px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply px-6 py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sky-glow;
   }
   
   .button-secondary {
-    @apply px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2;
+    @apply px-6 py-3 bg-sky-500/10 backdrop-blur-md border border-sky-500/30 text-sky-700 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:ring-offset-2 sky-border;
   }
   
   .input-field {
-    @apply w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300;
+    @apply w-full px-4 py-3 bg-sky-500/10 backdrop-blur-md border border-sky-500/30 rounded-lg text-sky-800 placeholder-sky-400/60 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-300 sky-border;
   }
   
   .section-padding {

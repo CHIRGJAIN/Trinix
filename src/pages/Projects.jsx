@@ -63,10 +63,10 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+          <h1 className="text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6">
             Our <span className="gradient-text">Projects</span>
           </h1>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Discover our innovative solutions that are transforming industries and improving lives worldwide.
           </p>
         </motion.div>
@@ -79,20 +79,20 @@ const Projects = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
-              className="glass rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300"
+              className="glass rounded-2xl p-8 border border-gray-200/50 hover:border-gray-300/50 transition-all duration-300"
             >
               <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center mb-6`}>
                 <project.icon className="w-8 h-8 text-white" />
               </div>
               
-              <h3 className="text-2xl font-bold text-white mb-4">{project.name}</h3>
-              <p className="text-white/70 mb-6 leading-relaxed">{project.description}</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{project.name}</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
               
               <div className="space-y-2 mb-8">
                 {project.features.map((feature, featureIndex) => (
                   <div key={featureIndex} className="flex items-center space-x-2">
                     <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${project.color}`} />
-                    <span className="text-white/60 text-sm">{feature}</span>
+                    <span className="text-gray-600 text-sm">{feature}</span>
                   </div>
                 ))}
               </div>

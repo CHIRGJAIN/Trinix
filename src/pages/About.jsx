@@ -107,10 +107,10 @@ const About = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+          <h1 className="text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6">
             About <span className="gradient-text">Trinix</span>
           </h1>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We're building the future of digital solutions, one innovation at a time. 
             Discover our journey, meet our team, and learn about our mission to transform how people connect and collaborate.
           </p>
@@ -124,14 +124,14 @@ const About = () => {
           className="grid lg:grid-cols-2 gap-12 items-center mb-20"
         >
           <div className="space-y-6">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900">
               Our <span className="gradient-text">Story</span>
             </h2>
-            <p className="text-lg text-white/80 leading-relaxed">
+            <p className="text-lg text-gray-700 leading-relaxed">
               Founded in 2008, Trinix Pvt. Ltd. has been at the forefront of digital innovation, 
               creating solutions that bridge the gap between technology and human needs.
             </p>
-            <p className="text-white/70 leading-relaxed">
+            <p className="text-gray-600 leading-relaxed">
               What started as a small team of passionate developers has grown into a global 
               technology company serving thousands of users across 25+ countries. Our mission 
               is to empower communities through technology, whether it's connecting people 
@@ -177,8 +177,8 @@ const About = () => {
               <div className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center`}>
                 <stat.icon className="w-8 h-8 text-white" />
               </div>
-              <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-              <div className="text-white/60">{stat.label}</div>
+              <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+              <div className="text-gray-600">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -191,10 +191,10 @@ const About = () => {
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-6">
               Our <span className="gradient-text">Values</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               The principles that guide everything we do and every decision we make.
             </p>
           </div>
@@ -211,8 +211,8 @@ const About = () => {
                 <div className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br ${value.color} flex items-center justify-center`}>
                   <value.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">{value.title}</h3>
-                <p className="text-white/70 leading-relaxed">{value.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -228,10 +228,10 @@ const About = () => {
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-6">
               Our <span className="gradient-text">Coverage</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive solutions serving diverse needs across multiple industries.
             </p>
           </div>
@@ -248,13 +248,13 @@ const About = () => {
                 <div className={`w-16 h-16 mb-6 rounded-xl bg-gradient-to-br ${platform.color} flex items-center justify-center`}>
                   <Star className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">{platform.title}</h3>
-                <p className="text-white/70 leading-relaxed mb-6">{platform.description}</p>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">{platform.title}</h3>
+                <p className="text-gray-600 leading-relaxed mb-6">{platform.description}</p>
                 <div className="space-y-3">
                   {Object.entries(platform.stats).map(([key, value]) => (
                     <div key={key} className="flex items-center justify-between">
-                      <span className="text-white/60 capitalize">{key}</span>
-                      <span className="text-white font-semibold">{value}</span>
+                      <span className="text-gray-600 capitalize">{key}</span>
+                      <span className="text-gray-900 font-semibold">{value}</span>
                     </div>
                   ))}
                 </div>
@@ -271,10 +271,10 @@ const About = () => {
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-6">
               Our <span className="gradient-text">Journey</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Key milestones that have shaped our growth and success over the years.
             </p>
           </div>
@@ -292,9 +292,9 @@ const About = () => {
                 >
                   <div className="w-1/2 px-8">
                     <div className="glass rounded-2xl p-6">
-                      <div className="text-2xl font-bold text-primary-400 mb-2">{milestone.year}</div>
-                      <h3 className="text-xl font-semibold text-white mb-3">{milestone.title}</h3>
-                      <p className="text-white/70 leading-relaxed">{milestone.description}</p>
+                      <div className="text-2xl font-bold text-gray-600 mb-2">{milestone.year}</div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">{milestone.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">{milestone.description}</p>
                     </div>
                   </div>
                   <div className="w-4 h-4 bg-primary-500 rounded-full border-4 border-white"></div>
@@ -313,10 +313,10 @@ const About = () => {
           className="text-center"
         >
           <div className="glass rounded-2xl p-12">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-6">
               Ready to Join Our Mission?
             </h2>
-            <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Whether you're looking to use our platforms or join our team, 
               we'd love to hear from you and explore how we can work together.
             </p>

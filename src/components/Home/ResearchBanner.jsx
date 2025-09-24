@@ -6,14 +6,14 @@ const ResearchBanner = () => {
   const { openModal } = useStore()
 
   return (
-    <section className="section-padding bg-gradient-to-b from-transparent to-black/20">
+    <section className="section-padding bg-gradient-to-b from-transparent to-gray-100">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="glass rounded-2xl p-8 lg:p-12 border border-white/10"
+          className="glass rounded-2xl p-8 lg:p-12 border border-gray-200/50"
         >
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
@@ -22,14 +22,14 @@ const ResearchBanner = () => {
                   <FileText className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white">
+                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
                     Submit Your Research
                   </h3>
-                  <p className="text-white/60">Share your innovations with the world</p>
+                  <p className="text-gray-600">Share your innovations with the world</p>
                 </div>
               </div>
               
-              <p className="text-white/80 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 We're always looking for groundbreaking research and innovative projects. 
                 Submit your work to be featured in our research portal and connect with 
                 like-minded professionals worldwide.
@@ -46,7 +46,7 @@ const ResearchBanner = () => {
             
             <div className="text-center">
               <div className="text-6xl mb-4">📚</div>
-              <div className="text-white/60">
+              <div className="text-gray-600">
                 Join our community of researchers and innovators
               </div>
             </div>

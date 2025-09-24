@@ -23,18 +23,23 @@ const Navbar = () => {
   }, [location])
 
   return (
-    <nav className="container-custom px-4 py-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-sky-200/50">
+      <div className="container-custom px-4 py-4">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
           <motion.div
-            className="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center"
+            className="w-16 h-16 rounded-lg flex items-center justify-center sky-glow"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <span className="text-white font-bold text-xl">T</span>
+            <img 
+              src="/trinix-logo.png" 
+              alt="Trinix Logo" 
+              className="w-full h-full object-contain"
+            />
           </motion.div>
-          <span className="text-white font-display font-bold text-xl gradient-text">
+          <span className="text-sky-800 font-display font-bold text-xl gradient-text">
             Trinix
           </span>
         </Link>
@@ -45,8 +50,8 @@ const Navbar = () => {
             <Link
               key={item.name}
               to={item.path}
-              className={`text-white/80 hover:text-white transition-colors duration-200 ${
-                location.pathname === item.path ? 'text-white font-semibold' : ''
+              className={`text-sky-600 hover:text-sky-500 transition-colors duration-200 ${
+                location.pathname === item.path ? 'text-sky-500 font-semibold sky-glow' : ''
               }`}
             >
               {item.name}
@@ -60,7 +65,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
               <Link
                 to="/dashboard"
-                className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors duration-200"
+                className="flex items-center space-x-2 text-sky-600 hover:text-sky-500 transition-colors duration-200"
               >
                 <User className="w-5 h-5" />
                 <span>{user?.name || 'Dashboard'}</span>
@@ -70,7 +75,7 @@ const Navbar = () => {
                   logout()
                   navigate('/')
                 }}
-                className="flex items-center space-x-2 text-white/60 hover:text-white transition-colors duration-200"
+                className="flex items-center space-x-2 text-sky-600 hover:text-sky-500 transition-colors duration-200"
               >
                 <LogOut className="w-5 h-5" />
                 <span>Logout</span>
@@ -82,7 +87,7 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-white p-2"
+          className="lg:hidden text-sky-600 p-2"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -95,15 +100,15 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden mt-4 glass rounded-lg overflow-hidden"
+            className="lg:hidden mt-4 bg-white/80 backdrop-blur-md border border-sky-200/50 rounded-lg overflow-hidden"
           >
             <div className="px-4 py-4 space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`block text-white/80 hover:text-white transition-colors duration-200 ${
-                    location.pathname === item.path ? 'text-white font-semibold' : ''
+                  className={`block text-sky-600 hover:text-sky-500 transition-colors duration-200 ${
+                    location.pathname === item.path ? 'text-sky-500 font-semibold' : ''
                   }`}
                 >
                   {item.name}
@@ -117,7 +122,7 @@ const Navbar = () => {
                   <div className="space-y-3">
                     <Link
                       to="/dashboard"
-                      className="flex items-center justify-center space-x-2 text-white/80 hover:text-white transition-colors duration-200"
+                      className="flex items-center justify-center space-x-2 text-white/80 hover:text-electric-400 transition-colors duration-200"
                     >
                       <User className="w-5 h-5" />
                       <span>{user?.name || 'Dashboard'}</span>
@@ -139,6 +144,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </nav>
   )
 }

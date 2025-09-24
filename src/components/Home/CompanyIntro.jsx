@@ -27,7 +27,7 @@ const CompanyIntro = () => {
   ]
 
   return (
-    <section className="section-padding bg-gradient-to-b from-black/20 to-transparent">
+    <section className="section-padding bg-gradient-to-b from-sky-50/50 to-transparent">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -45,7 +45,7 @@ const CompanyIntro = () => {
                 transition={{ delay: 0.2, duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-4xl lg:text-5xl font-display font-bold text-white leading-tight">
+                <h2 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 leading-tight">
                   About <span className="gradient-text">Trinix</span>
                 </h2>
               </motion.div>
@@ -55,7 +55,7 @@ const CompanyIntro = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
                 viewport={{ once: true }}
-                className="text-xl text-white/80 leading-relaxed"
+                className="text-xl text-gray-700 leading-relaxed"
               >
                 Founded in 2008, Trinix Pvt. Ltd. has been at the forefront of digital innovation, 
                 creating solutions that bridge the gap between technology and human needs.
@@ -66,7 +66,7 @@ const CompanyIntro = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
                 viewport={{ once: true }}
-                className="text-lg text-white/70 leading-relaxed"
+                className="text-lg text-gray-600 leading-relaxed"
               >
                 Our mission is to empower communities through technology, whether it's connecting 
                 people during emergencies, streamlining healthcare access, or creating unforgettable events.
@@ -105,13 +105,13 @@ const CompanyIntro = () => {
                 transition={{ delay: index * 0.2, duration: 0.6 }}
                 viewport={{ once: true }}
                 whileHover={{ x: 10 }}
-                className="glass rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300"
+                className="glass rounded-xl p-6 border border-gray-200/50 hover:border-gray-300/50 transition-all duration-300"
               >
                 <div className="flex items-start space-x-4">
                   <div className="text-3xl">{value.icon}</div>
                   <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">{value.title}</h3>
-                    <p className="text-white/70 leading-relaxed">{value.description}</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{value.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{value.description}</p>
                   </div>
                 </div>
               </motion.div>

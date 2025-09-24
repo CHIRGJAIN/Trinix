@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Calendar, Shield, Heart, Activity } from 'lucide-react'
+import { ArrowRight, Calendar, Shield, Heart, Activity, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const ProjectCards = () => {
   const projects = [
@@ -34,8 +34,7 @@ const ProjectCards = () => {
       features: ['Doctor Booking', 'Health Records', 'Telemedicine', 'Prescription Management'],
       path: '/medgo',
       image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-    }
-    ,
+    },
     {
       name: 'PropGo',
       description: 'Property discovery and management platform for rentals and listings.',
@@ -63,33 +62,75 @@ const ProjectCards = () => {
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'from-blue-500/10 to-cyan-500/10',
       features: ['Theme Templates', 'Drag & Drop', 'Export & Deploy'],
-      path: 'https://webstitch.in/',
+      path: '/webstitch',
       image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      external: true
+      external: false
     }
   ]
 
-  const [index, setIndex] = useState(0)
-  const length = projects.length
-  const autoPlayRef = useRef(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const intervalRef = useRef(null)
 
+  // Auto-slide every 3 seconds
   useEffect(() => {
-    autoPlayRef.current = () => {
-      setIndex((prev) => (prev + 1) % length)
+    if (isAutoPlaying) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % projects.length)
+      }, 3000)
     }
-  }, [length])
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+  }, [isAutoPlaying, projects.length])
 
+  const goToPrevious = () => {
+    setIsAutoPlaying(false)
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
+  }
+
+  const goToNext = () => {
+    setIsAutoPlaying(false)
+    setCurrentIndex((prev) => (prev + 1) % projects.length)
+  }
+
+  const goToSlide = (index) => {
+    setIsAutoPlaying(false)
+    setCurrentIndex(index)
+  }
+
+  // Resume auto-play after 10 seconds of inactivity
   useEffect(() => {
-    const play = () => autoPlayRef.current()
-    const interval = setInterval(play, 4500)
-    return () => clearInterval(interval)
-  }, [])
+    if (!isAutoPlaying) {
+      const timer = setTimeout(() => {
+        setIsAutoPlaying(true)
+      }, 10000)
+      return () => clearTimeout(timer)
+    }
+  }, [isAutoPlaying])
 
-  const prev = () => setIndex((i) => (i - 1 + length) % length)
-  const next = () => setIndex((i) => (i + 1) % length)
+  // Get visible cards based on screen size
+  const getVisibleCards = () => {
+    const cards = []
+    const totalCards = projects.length
+    
+    for (let i = 0; i < 3; i++) {
+      const cardIndex = (currentIndex + i) % totalCards
+      cards.push({
+        ...projects[cardIndex],
+        position: i,
+        isCenter: i === 1
+      })
+    }
+    return cards
+  }
+
+  const visibleCards = getVisibleCards()
 
   return (
-    <section className="section-padding bg-gradient-to-b from-transparent to-black/20">
+    <section className="section-padding bg-gradient-to-b from-transparent to-sky-50/50">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -98,116 +139,245 @@ const ProjectCards = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-display font-bold text-white mb-6">
+          <h2 className="text-4xl lg:text-5xl font-display font-bold text-sky-800 mb-6">
             Our <span className="gradient-text">Innovative</span> Solutions
           </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-sky-600 max-w-3xl mx-auto">
             Discover our comprehensive suite of platforms designed to revolutionize how we handle events, emergencies, and healthcare.
           </p>
         </motion.div>
 
-        {/* Carousel */}
+        {/* Responsive Carousel */}
         <div className="relative">
-          <div className="flex items-center justify-center space-x-6">
-            <button onClick={prev} className="p-2 rounded-full bg-white/10 hover:bg-white/20">
-              <ArrowRight className="w-5 h-5 transform rotate-180 text-white" />
-            </button>
+          {/* Navigation Buttons */}
+          <div className="flex items-center justify-between mb-8">
+            <motion.button
+              onClick={goToPrevious}
+              whileHover={{ 
+                scale: 1.15, 
+                backgroundColor: "rgba(255,255,255,0.25)",
+                transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
+              }}
+              whileTap={{ 
+                scale: 0.9,
+                transition: { duration: 0.1, ease: "easeOut" }
+              }}
+              className="group p-3 rounded-full bg-sky-100/50 hover:bg-sky-200/50 transition-all duration-700 sky-border"
+            >
+              <ChevronLeft className="w-6 h-6 text-sky-600 group-hover:text-sky-500 transition-colors duration-300" />
+            </motion.button>
 
-            <div className="w-full max-w-5xl overflow-visible">
-              <div className="relative h-[44rem] flex items-center justify-center">
-                {/* compute left, center, right indices */}
-                {(() => {
-                  const center = index
-                  const left = (index - 1 + length) % length
-                  const right = (index + 1) % length
+            <div className="flex space-x-2">
+              {projects.map((_, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  whileHover={{ 
+                    scale: 1.3,
+                    transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
+                  }}
+                  whileTap={{ 
+                    scale: 0.8,
+                    transition: { duration: 0.1, ease: "easeOut" }
+                  }}
+                  className={`w-3 h-3 rounded-full transition-all duration-700 ${
+                    index === currentIndex
+                      ? 'bg-sky-500 scale-125'
+                      : 'bg-sky-300 hover:bg-sky-400'
+                  }`}
+                />
+              ))}
+            </div>
 
-                  const leftProject = projects[left]
-                  const centerProject = projects[center]
-                  const rightProject = projects[right]
+            <motion.button
+              onClick={goToNext}
+              whileHover={{ 
+                scale: 1.15, 
+                backgroundColor: "rgba(255,255,255,0.25)",
+                transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
+              }}
+              whileTap={{ 
+                scale: 0.9,
+                transition: { duration: 0.1, ease: "easeOut" }
+              }}
+              className="group p-3 rounded-full bg-sky-100/50 hover:bg-sky-200/50 transition-all duration-700 sky-border"
+            >
+              <ChevronRight className="w-6 h-6 text-sky-600 group-hover:text-sky-500 transition-colors duration-300" />
+            </motion.button>
+          </div>
 
-                  const Card = ({ project, pos }) => {
-                    // pos: 'left' | 'center' | 'right'
-                    const isCenter = pos === 'center'
-                    const translateX = pos === 'left' ? -60 : pos === 'right' ? 60 : 0
-                    const rotateY = pos === 'left' ? 10 : pos === 'right' ? -10 : 0
-                    // keep side cards same visual length as center; use slight scale tweak for depth
-                    const scale = isCenter ? 1.03 : 0.995
-                    const z = isCenter ? 50 : 8
-                    const opacity = isCenter ? 1 : 0.9
-                    // fixed card size: wider and shorter per request
-                    const cardWidth = '70rem'
-                    const cardHeight = '30rem'
-
-                    return (
+          {/* Cards Container */}
+          <div className="relative overflow-hidden">
+            <motion.div
+              className="flex"
+              animate={{
+                x: `-${currentIndex * 100}%`
+              }}
+              transition={{
+                type: "tween",
+                ease: [0.25, 0.1, 0.25, 1],
+                duration: 1.2
+              }}
+            >
+              {projects.map((project, index) => (
+                <div
+                  key={index}
+                  className="w-full flex-shrink-0 px-4"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-6">
+                    {/* Show 3 cards on desktop, 2 on tablet, 1 on mobile */}
+                    {getVisibleCards().map((card, cardIndex) => (
                       <motion.div
-                        key={project.name + pos}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        style={{
-                            transform: `translateX(${translateX}%) scale(${scale}) rotateY(${rotateY}deg)`,
-                            zIndex: z,
-                            opacity,
-                            width: cardWidth,
-                            maxWidth: '950vw'
-                          }}
-                          className={`inline-block mx-8 p-4`}
+                        key={`${index}-${cardIndex}`}
+                        initial={{ opacity: 0, y: 40, scale: 0.85 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ 
+                          delay: cardIndex * 0.15,
+                          duration: 0.8,
+                          ease: [0.25, 0.1, 0.25, 1]
+                        }}
+                        className={`${
+                          card.isCenter 
+                            ? 'md:col-span-2 lg:col-span-2' 
+                            : cardIndex === 0 
+                              ? 'md:col-span-1 lg:col-span-1' 
+                              : 'md:col-span-1 lg:col-span-1'
+                        }`}
                       >
-                          <div style={{ height: cardHeight }} className={`relative glass rounded-2xl overflow-hidden bg-gradient-to-br ${project.bgColor} border border-white/10 hover:border-white/20 transition-all duration-300`}>
+                        <motion.div
+                          whileHover={{ 
+                            y: -10,
+                            scale: card.isCenter ? 1.1 : 1.02,
+                            transition: { 
+                              duration: 0.4, 
+                              ease: [0.25, 0.1, 0.25, 1],
+                              type: "tween"
+                            }
+                          }}
+                          whileTap={{ 
+                            scale: 0.96,
+                            transition: { duration: 0.15, ease: "easeOut" }
+                          }}
+                          className={`relative glass rounded-2xl overflow-hidden bg-gradient-to-br ${card.bgColor} border border-sky-200/50 hover:border-sky-300/50 transition-all duration-700 ${
+                            card.isCenter ? 'h-80 scale-105 shadow-2xl' : 'h-72 scale-95'
+                          }`}
+                        style={{
+                            boxShadow: card.isCenter 
+                              ? '0 25px 50px -12px rgba(0, 191, 255, 0.25)' 
+                              : '0 10px 25px -5px rgba(0, 0, 0, 0.1)'
+                          }}
+                        >
+                          {/* Background Image */}
                           <div className="absolute inset-0">
-                            <img src={project.image} alt={project.name} className="w-full h-full object-cover opacity-20" />
+                            <img
+                              src={card.image}
+                              alt={card.name}
+                              className="w-full h-full object-cover opacity-20"
+                            />
                           </div>
-                          <div className="relative p-8 h-full flex flex-col">
-                            <div className="flex items-start justify-between mb-6">
-                              <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                                {React.createElement(project.icon, { className: 'w-8 h-8 text-white' })}
+
+                          {/* Content */}
+                          <div className={`relative h-full flex flex-col ${
+                            card.isCenter ? 'p-6' : 'p-5'
+                          }`}>
+                            {/* Icon */}
+                            <div className="flex items-start justify-between mb-4">
+                              <div className={`rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center ${
+                                card.isCenter ? 'w-14 h-14' : 'w-12 h-12'
+                              }`}>
+                                {React.createElement(card.icon, { 
+                                  className: `text-white ${
+                                    card.isCenter ? 'w-7 h-7' : 'w-6 h-6'
+                                  }` 
+                                })}
                               </div>
+                              {card.isCenter && (
+                                <div className="px-3 py-1 rounded-full bg-electric-500/20 text-electric-400 text-sm font-medium">
+                                  Featured
+                                </div>
+                              )}
                             </div>
 
+                            {/* Title and Description */}
                             <div className="flex-1">
-                              <h3 className="text-2xl font-bold text-white mb-3">{project.name}</h3>
-                              <p className="text-white/70 leading-relaxed mb-6">{project.description}</p>
-                              <div className="space-y-2 mb-6">
-                                {project.features.map((feature, fi) => (
+                              <h3 className={`font-bold text-sky-800 mb-2 ${
+                                card.isCenter ? 'text-xl' : 'text-lg'
+                              }`}>
+                                {card.name}
+                              </h3>
+                              <p className={`text-sky-600 leading-relaxed mb-4 ${
+                                card.isCenter ? 'text-sm' : 'text-xs'
+                              }`}>
+                                {card.description}
+                              </p>
+
+                              {/* Features */}
+                              <div className={`space-y-1 mb-4 ${
+                                card.isCenter ? 'grid grid-cols-2 gap-1' : 'space-y-1'
+                              }`}>
+                                {card.features.slice(0, card.isCenter ? 4 : 2).map((feature, fi) => (
                                   <div key={fi} className="flex items-center space-x-2">
-                                    <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${project.color}`} />
-                                    <span className="text-white/80 text-sm">{feature}</span>
+                                    <div className={`rounded-full bg-gradient-to-r ${card.color} ${
+                                      card.isCenter ? 'w-1.5 h-1.5' : 'w-1.5 h-1.5'
+                                    }`} />
+                                    <span className={`text-sky-700 ${
+                                      card.isCenter ? 'text-xs' : 'text-xs'
+                                    }`}>
+                                      {feature}
+                                    </span>
                                   </div>
                                 ))}
                               </div>
                             </div>
 
+                            {/* Action Button */}
                             <div className="flex items-center justify-between">
-                              <span className="text-white/60 text-sm">Learn More</span>
-                              <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center`}>
-                                <ArrowRight className="w-4 h-4 text-white" />
-                              </div>
+                              <span className={`text-sky-500 font-medium ${
+                                card.isCenter ? 'text-sm' : 'text-xs'
+                              }`}>
+                                Learn More
+                              </span>
+                              <motion.div
+                                className={`rounded-full bg-gradient-to-r ${card.color} flex items-center justify-center ${
+                                  card.isCenter ? 'w-10 h-10' : 'w-8 h-8'
+                                }`}
+                                whileHover={{ 
+                                  scale: 1.2,
+                                  transition: { 
+                                    duration: 0.3, 
+                                    ease: [0.25, 0.1, 0.25, 1],
+                                    type: "tween"
+                                  }
+                                }}
+                                whileTap={{ 
+                                  scale: 0.8,
+                                  transition: { 
+                                    duration: 0.1, 
+                                    ease: "easeOut"
+                                  }
+                                }}
+                                transition={{ 
+                                  duration: 0.4, 
+                                  ease: [0.25, 0.1, 0.25, 1],
+                                  type: "tween"
+                                }}
+                              >
+                                <ArrowRight className={`text-white ${
+                                  card.isCenter ? 'w-4 h-4' : 'w-4 h-4'
+                                }`} />
+                              </motion.div>
                             </div>
                           </div>
 
+                          {/* Hover Overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                        </div>
+                        </motion.div>
                       </motion.div>
-                    )
-                  }
-
-                  return (
-                    <>
-                      {/* left behind */}
-                      <Card project={leftProject} pos="left" />
-                      {/* center on top */}
-                      <Card project={centerProject} pos="center" />
-                      {/* right behind */}
-                      <Card project={rightProject} pos="right" />
-                    </>
-                  )
-                })()}
+                    ))}
               </div>
             </div>
-
-            <button onClick={next} className="p-2 rounded-full bg-white/10 hover:bg-white/20">
-              <ArrowRight className="w-5 h-5 text-white" />
-            </button>
+              ))}
+            </motion.div>
           </div>
         </div>
 
@@ -233,6 +403,3 @@ const ProjectCards = () => {
 }
 
 export default ProjectCards
-
-
-

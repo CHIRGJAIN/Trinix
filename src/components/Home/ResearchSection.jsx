@@ -34,10 +34,10 @@ const ResearchSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl lg:text-5xl font-display font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-display font-bold text-gray-900 mb-4">
             Research and idea
           </h2>
-          <p className="text-white/80 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto">
             A snapshot of our latest research initiatives across AI, healthcare, and operations.
           </p>
         </motion.div>
@@ -50,7 +50,7 @@ const ResearchSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
               viewport={{ once: true }}
-              className="glass rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300"
+              className="glass rounded-2xl overflow-hidden border border-gray-200/50 hover:border-gray-300/50 transition-all duration-300"
             >
               <div className="relative h-44">
                 <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
@@ -60,9 +60,9 @@ const ResearchSection = () => {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-lg font-semibold text-white mb-2">{project.title}</h3>
-                <p className="text-white/70 text-sm mb-4">{project.description}</p>
-                <Link to="/research" className="inline-flex items-center space-x-2 text-white/80 hover:text-white transition-colors">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{project.title}</h3>
+                <p className="text-gray-600 text-sm mb-4">{project.description}</p>
+                <Link to="/research" className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
                   <span>Read more</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>

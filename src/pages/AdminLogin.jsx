@@ -34,7 +34,7 @@ const AdminLogin = () => {
           <input type="password" className="mt-1 block w-full border rounded px-3 py-2 text-black placeholder-gray-500" value={password} onChange={e => setPassword(e.target.value)} required />
         </label>
         <div className="flex items-center justify-between">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded" type="submit">Login</button>
+          <button className="bg-sky-600 text-white px-4 py-2 rounded" type="submit">Login</button>
         </div>
       </form>
     </div>
